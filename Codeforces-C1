@@ -1,0 +1,65 @@
+#include<iostream>
+#include<bits/stdc++.h>
+#define LL long long int
+using namespace std;
+int main()
+{
+	LL n;
+	cin>>n;
+	LL a[n];
+	for(LL i=0; i<n; i++)
+	cin>>a[i];
+	string s;
+	LL k=0;
+	LL len=n-1;
+	LL ans=0;
+	LL prev=0;
+	LL i=0;
+	for( ; i<=len; )
+	{
+		if((prev-a[i])<0 && (prev-a[len])<0)
+		{
+			if((a[i]-prev)<(a[len]-prev))
+			{
+			s=s+'L';
+			prev=a[i];
+			i++;
+			ans++;
+			continue;
+				
+			}
+			else
+			{
+			s=s+'R';
+			prev=a[len];
+			len--;
+			ans++;
+			continue;
+			}
+			
+		}
+		else if((prev-a[i])<0)
+		{
+			s=s+'L';
+			prev=a[i];
+			i++;
+			ans++;
+			continue;
+		}
+		else if((prev-a[len])<0)
+		{
+			s=s+'R';
+			prev=a[len];
+			len--;
+			ans++;
+			continue;
+		}
+		else
+		{
+			break;
+		}
+		
+	}
+	cout<<ans<<"\n";
+	cout<<s;
+}
