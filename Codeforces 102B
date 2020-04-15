@@ -1,0 +1,22 @@
+#include<bits/stdc++.h> 
+#define LL long long int
+using namespace std; 
+int main() 
+{ 
+	
+		string s;
+		cin>>s;
+		LL sum=0,count=0;
+		while(s.length()!=1)
+		{
+			
+			sum=0;
+			for(LL i=0; i<s.length(); i++)
+			{
+				sum=sum+(s[i]-'0');
+			}
+			count++;
+			s=to_string(sum);
+		}
+		cout<<count<<"\n";
+}
