@@ -1,0 +1,49 @@
+#include<bits/stdc++.h> 
+#include<iostream>
+#include<sstream>
+#define LL long long int
+using namespace std; 
+int main() 
+{ 
+	
+	LL n;
+	cin>>n;
+	string s;
+	s=to_string(n);
+	LL len=s.length();
+	string temp;
+	if(len%2!=0)
+	{
+		len++;
+	}
+	string temp1;
+	temp.insert(0,len/2,'4');
+	temp.insert(len/2,len-len/2,'7');
+	temp1.insert(0,len/2,'7');
+	temp1.insert(len/2,len-len/2,'4');
+	LL x1=stoll(temp1);
+	if(x1<n)
+	{
+		len=temp.length();
+		if(len%2==0)
+		len=len+2;
+		else
+		len++;
+		temp.clear();
+		temp.insert(0,len/2,'4');
+		temp.insert(len/2,len-len/2,'7');
+	}
+	do
+	{
+		LL x=stoll(temp);
+		//cout<<x<<"\n";
+		if(x>=n)
+		break;
+		
+		
+	}
+	while(next_permutation(temp.begin(),temp.end()));
+	cout<<temp<<"\n";
+	
+}
+ 
