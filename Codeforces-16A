@@ -1,0 +1,47 @@
+#include<bits/stdc++.h> 
+#define LL long long int
+using namespace std; 
+int main() 
+{ 
+	LL n,m;
+	cin>>n>>m;
+	char a[n][m];
+	for(LL i=0; i<n; i++)
+	{
+		for(LL j=0; j<m; j++)
+		cin>>a[i][j];
+	}
+	LL check=0;
+	for(LL i=0; i<n; i++)
+	{
+		for(LL j=0; j<m-1; j++)
+		{
+			if(a[i][j]!=a[i][j+1])
+			{
+				check++;
+				break;
+			}
+		}
+		if(check!=0)
+		break;
+	}
+	if(check!=0)
+	cout<<"NO\n";
+	else
+	{
+		check=0;
+		for(LL i=0; i<n-1; i++)
+		{
+			for(LL j=0; j<m; j++)
+			{
+				if(a[i][j]==a[i+1][j])
+				check++;
+			}
+		}
+		if(check==0)
+		cout<<"YES\n";
+		else
+		cout<<"NO\n";
+	}
+} 
+ 
