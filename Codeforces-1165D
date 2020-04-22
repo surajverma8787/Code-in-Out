@@ -1,0 +1,52 @@
+#include<bits/stdc++.h> 
+#include<iostream>
+#include<sstream>
+#define LL long long int
+using namespace std; 
+int main() 
+{ 
+	LL t;
+	cin>>t;
+	while(t--)
+	{
+		LL n;
+		cin>>n;
+		LL a[n];
+		for(LL i=0; i<n; i++)
+		cin>>a[i];
+		sort(a,a+n);
+		LL ans=a[0]*a[n-1];
+		LL count=0;
+		vector<LL>temp;
+		for(LL i=1; i<=sqrt(ans); i++)
+		{
+			if(ans%i==0)
+			{
+				temp.push_back(i);
+				if(ans/i!=i)
+				{
+					temp.push_back(ans/i);
+				}
+			}
+		}
+		sort(temp.begin(),temp.end());
+		temp.erase(temp.begin());
+		temp.erase(temp.end()-1);
+		for(LL i=0; i<temp.size(); i++)
+		{
+			if(a[i]!=temp[i])
+			{
+				count++;
+				break;
+			}
+			//cout<<temp[i]<<" ";
+		}
+		if(count==0)
+		cout<<ans<<"\n";
+		else
+		cout<<"-1"<<"\n";
+		
+	}
+	
+}
+ 
