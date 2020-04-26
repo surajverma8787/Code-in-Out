@@ -1,0 +1,33 @@
+#include<iostream>
+#include<bits/stdc++.h>
+#include<math.h>
+#define LL long long int
+using namespace std;
+int main()
+{
+	LL m,s;
+	cin>>m>>s;
+	if(s<1 && m>1 ||(s>9*m))
+	{
+		cout<<-1<<" "<<-1<<"\n";
+		return 0;
+	}
+	LL k=s;
+	for(LL i=m-1; i>=0; i--)
+	{
+		LL 	temp=max((LL)0,k-(LL)9*i);
+		if(temp==0 && i==(m-1) && k)
+		temp=1;
+		cout<<temp;
+		k=k-temp;
+	}
+	cout<<" ";
+	for(LL i=m-1; i>=0; i--)
+	{
+		LL temp=min((LL)9,s);
+		cout<<temp;
+		s=s-temp;
+		
+	}
+	cout<<"\n";
+}
