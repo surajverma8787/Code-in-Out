@@ -1,0 +1,186 @@
+#include<iostream>
+#include<bits/stdc++.h>
+#define LL long long int
+using namespace std;
+int main()
+{
+		string s;
+		cin>>s;
+		LL c1=0;
+		for(LL i=0; i<s.length()-1; i++)
+		{
+			if(s[i]==s[i+1])
+			{
+				c1++;
+				break;
+			}
+		}
+		
+		if(c1!=0)
+		{
+			cout<<"Impossible\n";
+			return 0;
+		}
+		LL loc1=0,loc2=0;
+		char ch;
+		map<char,LL>m;
+		for(LL i=0; i<s.length(); i++)
+		{
+			m[s[i]]++;
+			if(m[s[i]]==2)
+			ch=s[i];
+		}
+		vector<char>c;
+		LL k1=-1;
+		for(LL i=0; i<s.length(); i++)
+		{
+			if(s[i]==ch && k1==-1)
+			{
+				c.push_back(s[i]);
+				k1++;
+			}
+			if(s[i]!=ch)
+			c.push_back(s[i]);
+		}
+		char ad1='a',ad2='a',ad3='a',ad4='a';
+		LL c2=-1;
+		c1=-1;
+		for(LL i=0; i<s.length(); i++)
+		{
+			if(s[i]==ch && i-1>=0 && c1==-1)
+			{
+				ad1=s[i-1];
+				c1++;
+				if(i+1>s.length())
+				c2++;
+			}
+			if(s[i]==ch && i+1<s.length() && c2==-1)
+			{
+				ad2=s[i+1];
+				c2++;
+				if(c1==-1)
+				{
+					c1++;
+				}
+			}
+			if(s[i]==ch && i-1>=0)
+			{
+				ad3=s[i-1];
+			}
+			if(s[i]==ch && i+1<s.length())
+			{
+				ad4=s[i+1];
+			}
+			
+			
+			
+		}
+		LL count1=0;
+		//cout<<ad1<<" "<<ad2<<" "<<ad3<<" "<<ad4<<"\n";
+		if(ad1!='a')
+		count1++;
+		if(ad2!='a')
+		count1++;
+		if(ad3!='a')
+		count1++;
+		if(ad4!='a')
+		count1++;
+		vector<char>a;
+		vector<char>b;
+		LL k=0;
+		k1=26;
+		for(LL i=0; i<13; i++)
+		a.push_back(c[i]);
+		for(LL i=25; i>=13; i--)
+		b.push_back(c[i]);
+		while(1)
+		{
+			LL count=0;
+			map<char,LL>m;
+			for(LL i=0; i<a.size(); i++)
+			{
+				if(a[i]==ch)
+				{
+					if((i-1>=0 && a[i-1]==ad1)||(i+1<13 && a[i+1]==ad1)|| (b[i]==ad1)||(i-1>=0 && b[i-1]==ad1)||(i+1<13 && b[i+1]==ad1))
+					{
+						count++;
+					}
+					if((i-1>=0 && a[i-1]==ad2)||(i+1<13 && a[i+1]==ad2)|| (b[i]==ad2)||(i-1>=0 && b[i-1]==ad2)||(i+1<13 && b[i+1]==ad2))
+					{
+						count++;
+					}
+					if((i-1>=0 && a[i-1]==ad3)||(i+1<13 && a[i+1]==ad3)|| (b[i]==ad3)||(i-1>=0 && b[i-1]==ad3)||(i+1<13 && b[i+1]==ad3))
+					{
+						count++;
+					}
+					if((i-1>=0 && a[i-1]==ad4)||(i+1<13 && a[i+1]==ad4)|| (b[i]==ad4)||(i-1>=0 && b[i-1]==ad4)||(i+1<13 && b[i+1]==ad4))
+					{
+						count++;
+					}
+					
+					
+				}
+				if(b[i]==ch)
+				{
+					
+					if((i-1>=0 && b[i-1]==ad1)||(i+1<13 && b[i+1]==ad1)|| (a[i]==ad1)||(i-1>=0 && b[i-1]==ad1)||(i+1<13 && b[i+1]==ad1))
+					{
+						count++;
+					}
+					if((i-1>=0 && b[i-1]==ad2)||(i+1<13 && b[i+1]==ad2)|| (a[i]==ad2)||(i-1>=0 && b[i-1]==ad2)||(i+1<13 && b[i+1]==ad2))
+					{
+						count++;
+					}
+					if((i-1>=0 && b[i-1]==ad3)||(i+1<13 && b[i+1]==ad3)|| (a[i]==ad3)||(i-1>=0 && a[i-1]==ad3)||(i+1<13 && a[i+1]==ad3))
+					{
+						count++;
+					}
+					if((i-1>=0 && b[i-1]==ad4)||(i+1<13 && b[i+1]==ad4)|| (a[i]==ad4)||(i-1>=0 && a[i-1]==ad4)||(i+1<13 && a[i+1]==ad4))
+					{
+						count++;
+					}
+					
+				}
+				
+			}
+		/*	for(LL i=0; i<a.size(); i++)
+			cout<<a[i];
+			cout<<"\n";
+			for(LL i=0; i<b.size(); i++)
+			cout<<b[i];
+			cout<<"\n";
+			cout<<"\n";*/
+			if(count==count1)
+			break;
+			else
+			{
+				char temp=b[0],temp1=a[a.size()-1];
+				for(LL i=0; i<b.size()-1; i++)
+				b[i]=b[i+1];
+				for(LL i=a.size()-1; i>=1; i--)
+				{
+					a[i]=a[i-1];
+				}
+				a[0]=temp;
+				b[b.size()-1]=temp1;
+				
+				
+			}
+			/*for(LL i=0; i<a.size(); i++)
+			cout<<a[i];
+			cout<<"\n";
+			for(LL i=0; i<b.size(); i++)
+			cout<<b[i];
+			cout<<"\n";
+			break;*/
+		}
+		for(LL i=0; i<a.size(); i++)
+		cout<<a[i];
+		cout<<"\n";
+		for(LL i=0; i<b.size(); i++)
+		cout<<b[i];
+		cout<<"\n";
+		
+		
+		
+}
