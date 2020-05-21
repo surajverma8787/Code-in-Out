@@ -1,0 +1,104 @@
+#include<bits/stdc++.h>
+#define LL long long int
+#define pi 3.1415926535897932
+using namespace std;
+int main()
+{
+	
+	string s;
+	cin>>s;
+	LL k;
+	cin>>k;
+	LL can=count(s.begin(),s.end(),'?');
+	LL sno=count(s.begin(),s.end(),'*');
+	LL n=s.length();
+	if(can==0 && sno==0 && k!=n)
+	{
+		cout<<"Impossible\n";
+		return 0;
+	}
+	if(can==0 && sno==0 && k==n)
+	{
+		cout<<s<<"\n";
+		return 0;
+	}
+	if(n-(can+sno)==k)
+	{
+		for(LL i=0; i<n; i++)
+		{
+			if(s[i]!='*' && s[i]!='?')
+			cout<<s[i];
+		}
+		cout<<"\n";
+		return 0;
+	}
+	n=n-can-sno;
+	LL len=0;
+	string ans;
+	if(n<k)
+	{
+		
+		LL c=k-n;
+		for(LL i=0,len=0; i<s.length() && len<k; i++)
+		{
+			if(s[i]!='*' && s[i]!='?')
+			{
+				ans+=s[i];
+				len++;
+			}
+			if(s[i]=='*' && c)
+			{
+				//cout<<len<<"\n";
+				for(; len<k && c; len++,c--)
+				{
+					ans+=s[i-1];
+				}
+			}
+			
+		}
+	}
+	else if(n>k) 
+	{
+		len=0;
+		LL c=n-k;
+		if(n-can-sno>k)
+		{
+			cout<<"Impossible\n";
+			return 0;
+			
+		}
+		for(LL i=0; i<s.length() && len<k; i++)
+		{
+			if(i+1<s.length() && s[i+1]=='?' && c)
+			{
+				i++;
+				c--;
+				continue;
+			}
+			if(i+1<s.length() && s[i+1]=='*' && c)
+			{
+				i++;
+				c--;
+				continue;
+			}
+			if(s[i]!='*' && s[i]!='?')
+			{
+				ans+=s[i];
+				len++;
+			}
+			
+		}
+		
+		
+	}
+	//cout<<ans.length()<<" "<<n<<" "<<ans<<"\n";
+	if(ans.length()!=k)
+	{
+		cout<<"Impossible\n";
+	}
+	else
+	cout<<ans<<"\n";
+	
+		
+	
+}
